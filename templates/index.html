@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, intial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+	<title>Xchange</title>
+
+	<style type="text/css">
+		body {
+			align-content: center;
+		}
+
+		.box {
+			background-color: teal;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+	
+	<div class="title">
+	<h1>Xchnage Universal Currency Converter</h1>
+	<h5><I>convert over 180 currencies with latest rates</I></h5>
+	</div>
+	<div class="form-group">
+	
+	<form action="{{url_for('index')}}" method="POST">
+		<label><select class="form-control" name="base_syb">
+			{% for currency in currencies %}
+			<option value="{{currency.id}}"> {{currency.symbol}} </option>
+			{% endfor %}
+		</select></label>
+		 <img id="swap" href="{{url_for('swap')}}"src="">
+		 <label><select class="form-control" name="base_syb">
+			{% for currency in currencies %}
+			<option value="{{currency.id}}"> {{currency.symbol}} </option>
+			{% endfor %}
+		</select></label>
+		<br>
+		<input class="form-control" type="integer" name="base_val">      <label></label><br>
+		<button class="form-control">Convert</button>
+	</form>
+	
+	</div>
+
+
+	</div>
+
+</body>
+</html>
