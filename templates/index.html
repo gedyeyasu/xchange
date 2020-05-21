@@ -27,21 +27,22 @@
 	</div>
 	<div class="form-group">
 	
-	<form action="{{url_for('index')}}" method="POST">
+	<form action="{{url_for('convert')}}" method="POST">
+
 		<label><select class="form-control" name="base_syb">
-			{% for currency in currencies %}
-			<option value="{{currency.id}}"> {{currency.symbol}} </option>
+			{% for symb, currency in currencies.items() %}
+			<option value="{{ symb }}"> {{ currency }} </option>
 			{% endfor %}
 		</select></label>
-		 <img id="swap" href="{{url_for('swap')}}"src="">
-		 <label><select class="form-control" name="base_syb">
-			{% for currency in currencies %}
-			<option value="{{currency.id}}"> {{currency.symbol}} </option>
+		 <img id="swap" "src="">
+		 <label><select class="form-control" name="target_syb">
+			{% for symb, currency in currencies.items() %}
+			<option value="{{ symb }}"> {{ currency }} </option>
 			{% endfor %}
 		</select></label>
 		<br>
-		<input class="form-control" type="integer" name="base_val">      <label></label><br>
-		<button class="form-control">Convert</button>
+		<input  style="width: 320px" class="input-group" type="integer" placeholder="amount to convert" name="amount">  <label class="input-group"> {{ result }}</label><br>
+		<br><button class="btn btn-default" type="submit">Convert</button>
 	</form>
 	
 	</div>
