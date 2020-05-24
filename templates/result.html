@@ -6,14 +6,20 @@
 	
 	<title>Xchange</title>
 
-	<style type="text/css">
-		body {
-			align-content: center;
+		<style type="text/css">
+		.title {
+			text-align: center;
 		}
 
 		.box {
 			background-color: teal;
 		}
+		.form-group{
+			background: rgba(0, 34, 114, 0.65);
+    		border-radius: 15px 15px 0px 0px;
+    		padding: 5px 32px 30px;
+		}
+	</style>
 	</style>
 
 </head>
@@ -26,8 +32,10 @@
 	<h5><I>converted result based on European Central Bank Status {{ date }}</I></h5><br>
 
 	</div>
+	<div class="form-group">
 	<h5>{{amount}} - {{base_syb}} is equal to {{ result }} - {{xch_syb}} </h5>
 	<button><a href="{{url_for('index')}}" class="btn btn-default">Go Back and Try Again</a></button>
+	</div>
 
 
 	</div>

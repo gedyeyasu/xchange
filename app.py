@@ -15,6 +15,7 @@ Session(app)
 def index():
 
 	#value to be sent to form
+	
 	res= requests.get("http://data.fixer.io/api/symbols?access_key=23bd78a271bd8f29985a755297f0560a")
 	if res.status_code != 200:
 		return (str("Poor Connection please refersh the page"))
@@ -34,6 +35,7 @@ def convert():
 	xch_syb=request.form.get("target_syb")
 	base_val=request.form.get("amount")
 
+	
 	res2=requests.get("http://data.fixer.io/api/latest?access_key=23bd78a271bd8f29985a755297f0560a")
 	if res2.status_code != 200:
 		return (str("Poor Connection please refersh the page"))
