@@ -31,13 +31,13 @@
 
 		<label><select class="form-control" name="base_syb">
 			{% for symb, currency in currencies.items() %}
-			<option value="{{ symb }}"> {{ currency }} - {{symb}} </option>
+			<option value="{{ symb }}"> {{ symb }} - {{currency}} </option>
 			{% endfor %}
 		</select></label>
 		 <img id="swap" "src="">
 		 <label><select class="form-control" name="target_syb">
 			{% for symb, currency in currencies.items() %}
-			<option value="{{ symb }}"> {{ currency }} - {{symb}} </option>
+			<option value="{{ symb }}"> {{ symb }} - {{currency}} </option>
 			{% endfor %}
 		</select></label>
 		<br>
