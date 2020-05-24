@@ -1,47 +1,63 @@
+import datetime
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+from flask_session import Session
 
 app = Flask(__name__)
+
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+
+Session(app)
 
 @app.route("/")
 def index():
 
 	#value to be sent to form
 	res= requests.get("http://data.fixer.io/api/symbols?access_key=23bd78a271bd8f29985a755297f0560a")
+	if res.status_code != 200:
+		return (str("Poor Connection please refersh the page"))
 	data=res.json()
 	currencies=data["symbols"]
-	
-	
-	#returned value from the form
-	base_syb=request.form.get("base_syb")
-	xch_syb=request.form.get("target_syb")
-	base_val=request.form.get("amount")
 
-
+		
 	return render_template("index.html", currencies=currencies)
 
 
 @app.route("/convert", methods=["POST", "GET"])
 def convert():
 
-	#getting value from form
-	base_syb=str(request.form.get("base_syb"))
-	xch_syb=str(request.form.get("target_syb"))
+
+	#returned value from the form
+	base_syb=request.form.get("base_syb")
+	xch_syb=request.form.get("target_syb")
 	base_val=request.form.get("amount")
 
-		
-
-	#converting in to target currency
-	res2=requests.get("https://api.exchangeratesapi.io/latest?base=USD&symbols=xch_syb HTTP/1.1")
+	res2=requests.get("http://data.fixer.io/api/latest?access_key=23bd78a271bd8f29985a755297f0560a")
+	if res2.status_code != 200:
+		return (str("Poor Connection please refersh the page"))
 	ret=res2.json()
-	return(str(ret)) # just to return error
+	
+	# just to return error
 	if ret["success"]:
-		result=ret["result"]
+		#calculate target amount
+		#convert first base to euro
+		base_rate=ret["rates"][base_syb]
+		euro=float(float(base_val) / float(base_rate))
+
+
+		#convert then euro to target currency
+		target_rate=ret["rates"][xch_syb]
+		result=float(euro*float(target_rate))
+		result=str(round(result,2))
+		date=datetime.datetime.today()
+
 	else:
 		return("Api request error") # just to return error
 
 
-	return render_template("index.html", result=result)	
+	return render_template("result.html",amount=base_val,base_syb=base_syb,result=result, xch_syb=xch_syb, date=date)
 
 if __name__=='__main__':
     app.run(debug=True)

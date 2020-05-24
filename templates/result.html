@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, intial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+	<title>Xchange</title>
+
+	<style type="text/css">
+		body {
+			align-content: center;
+		}
+
+		.box {
+			background-color: teal;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+	
+	<div class="title">
+	<h1>Xchnage Universal Currency Converter</h1>
+	<h5><I>converted result based on European Central Bank Status {{ date }}</I></h5><br>
+
+	</div>
+	<h5>{{amount}} - {{base_syb}} is equal to {{ result }} - {{xch_syb}} </h5>
+	<button><a href="{{url_for('index')}}" class="btn btn-default">Go Back and Try Again</a></button>
+
+
+	</div>
+
+</body>
+</html>
