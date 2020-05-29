@@ -10,8 +10,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
-#api_key=23bd78a271bd8f29985a755297f0560a
-api_key=process.env.access_key
+api_key=23bd78a271bd8f29985a755297f0560a
+#api_key=process.env.access_key
 
 @app.route("/")
 def index():
