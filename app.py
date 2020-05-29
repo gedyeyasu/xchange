@@ -2,8 +2,13 @@ import datetime
 import requests
 from flask import Flask, render_template, request, session
 from flask_session import Session
+import os 
+from pml import app 
 
 app = Flask(__name__)
+#code from stackoverflow for deployment
+port = int(os.environ.get('PORT', 5000)) 
+app.run(host='0.0.0.0', port=port)
 
 
 app.config["SESSION_PERMANENT"] = False
