@@ -64,4 +64,4 @@ def convert():
 	return render_template("result.html",amount=base_val,base_syb=base_syb,result=result, xch_syb=xch_syb, date=date)
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=33507)
