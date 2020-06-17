@@ -1,5 +1,6 @@
 import datetime
 import requests
+import os
 from flask import Flask, render_template, request, session
 from flask_session import Session
 
@@ -8,6 +9,7 @@ app = Flask(__name__)
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["access_key"] = os.environ.get("access_key")
 
 Session(app)
 
@@ -16,7 +18,7 @@ def index():
 
 	#value to be sent to form
 	
-	res= requests.get("http://data.fixer.io/api/symbols?access_key=23bd78a271bd8f29985a755297f0560a")
+	res= requests.get("http://data.fixer.io/api/symbols?access_key=access_key")
 	if res.status_code != 200:
 		return (str("Poor Connection please refersh the page"))
 	data=res.json()
@@ -36,7 +38,7 @@ def convert():
 	base_val=request.form.get("amount")
 
 	
-	res2=requests.get("http://data.fixer.io/api/latest?access_key=23bd78a271bd8f29985a755297f0560a")
+	res2=requests.get("http://data.fixer.io/api/latest?access_key=access_key")
 	if res2.status_code != 200:
 		return (str("Poor Connection please refersh the page"))
 	ret=res2.json()
